@@ -5,13 +5,54 @@
 	<title>EQUIPMENT</title>
 </head>
 <script>
+	const key = ["equipment", "count", "describe"];
+	const buttonValue = ["修改", "删除", "取消修改"];
+	const buttonFunc = ["", "", ""];
 	window.onload = function () {
-
+		function makeTableRow() {
+			let tr = document.createElement("tr");
+			tr.className = "row";
+			for(let i = 0; i <= 2; i++) {
+				let td = document.createElement("td");
+				let input = document.createElement("input");
+				input.value = ""; // TODO: add value
+				input.name = key[i];
+				input.className = key[i];
+				td.appendChild(input);
+				tr.appendChild(td);
+			}
+			let td = document.createElement("td");
+			for(let i = 0; i <= 2; i++) {
+				let button = document.createElement("input");
+				button.type = "button";
+				button.value = buttonValue[i];
+				button.onClick = buttonFunc[i];
+				td.appendChild(button);
+			}
+			tr.appendChild(td);
+			return tr;
+		}
 	}
 </script>
 <body>
 	<table>
-		<tbody></tbody>
+		<tbody>
+			<tr class="row">
+				<td><input type="text" name="eqiupment" id="" class="equipment"></td>
+				<td><input type="text" name="count" id="" class="count"></td>
+				<td><input type="text" name="describe" id="" class="describe"></td>
+			</tr>
+			<tr class="row">
+				<td><input type="text" name="eqiupment" id="" class="equipment"></td>
+				<td><input type="text" name="count" id="" class="count"></td>
+				<td><input type="text" name="describe" id="" class="describe"></td>
+				<td>
+					<input type="button" value="修改">
+					<input type="button" value="删除">
+					<input type="button" value="取消修改">
+				</td>
+			</tr>
+		</tbody>
 	</table>
 </body>
 </html>

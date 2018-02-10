@@ -1,0 +1,15 @@
+EQUIPMENT
+	String name PK
+	Number count not null
+	String describe 备注什么的...
+	Number availCount not null
+
+EQUIPMENT-ACCESSORY
+	String equipName PK
+	String accessoryName PK
+
+LOAN
+	String name PK
+	Date date PK
+	String Borrower not null
+	String describe
