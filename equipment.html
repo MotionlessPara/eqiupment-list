@@ -9,6 +9,7 @@
 	const key = ["equipment", "count", "availCount", "describe"];
 	const buttonValue = ["修改", "删除", "取消修改"];
 	const buttonFunc = ["", "", ""];
+	let equipmentMap = new Map();
 	function makeupUrl(url, data) {
     if (url.indexOf("?") === -1) url += "?";
     else url += "&";
@@ -54,11 +55,15 @@ function createXMLRequest(url, method) {
 function addButtonOnClickHandle() {
 	console.log("addButtonOnClickHandle");
 	let url = "http://47.93.35.183:8000/equipment/";
+	let data = {};
+	data["name"] = document.getElementById("addEquipment").value;
+	data["describe"] = document.getElementById("addDescribe").value;
+	data["count"] = document.getElementById("addCount").value;
+	makeupURL(url, data);
 	createXMLRequest(url, "POST");
 }
 	window.onload = function () {
 		function makeTableRow() {
-			
 			let tr = document.createElement("tr");
 			tr.className = "row";
 			for(let i = 0; i <= 3; i++) {
@@ -92,11 +97,20 @@ function addButtonOnClickHandle() {
 <body>
 	<table>
 		<tbody>
+			<thead>
+				<tr>
+					<th>设备</th>
+					<th>数量</th>
+					<th>可用数量</th>
+					<th>备注</th>
+					<th>操作</th>
+				</tr>
+			</thead>
 			<tr class="row">
-				<td><input type="text" name="eqiupment" id="" class="equipment"></td>
-				<td><input type="text" name="count" id="" class="count"></td>
-				<td><input type="text" name="availCount" id="" class="availCount"></td>
-				<td><input type="text" name="describe" id="" class="describe"></td>
+				<td><input type="text" name="eqiupment" id="addEquipment" class="equipment"></td>
+				<td><input type="text" name="count" id="addCount" class="count"></td>
+				<td></td>
+				<td><input type="text" name="describe" id="addDescribe" class="describe"></td>
 				<td><input type="button" value="增加" onclick="addButtonOnClickHandle()" ></td>
 			</tr>
 			<tr class="row">

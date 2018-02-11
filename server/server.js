@@ -11,8 +11,9 @@ let connection = mysql.createConnection({
 app.post("/equipment", (req, res) => {
 	console.log("POST", "/equipment", req.query);
 	// connection.connect();
-	console.log(res);
-	// let sql = "insert into Equipment values()"
+	let sql = "insert into Equipment values()";
+	res.send("lalala");
+	res.end();
 	// connection.query(sql , (err, result) => {
 	// 	if(err) {
 	// 		return;
@@ -22,14 +23,14 @@ app.post("/equipment", (req, res) => {
 	// });
 })
 
-// app.delete("/equipment", (req, res) => {
-// 	connection.connect();
-// 	connection.query(sql, (err, result) => {
-// 		if(err) {
-// 			return;
-// 		}
-// 		console.log(result);
-// 	})
-// })
-// 
+app.delete("/equipment", (req, res) => {
+	connection.connect();
+	connection.query(sql, (err, result) => {
+		if(err) {
+			return;
+		}
+		console.log(result);
+	})
+})
+
 let server = app.listen(8000, () => {console.log("server start")});
