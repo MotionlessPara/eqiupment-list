@@ -13,11 +13,11 @@ app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.header("X-Powered-By",' 3.2.1')
-    if(req.method=="OPTIONS") res.send(200);/*让options请求快速返回*/
+    if(req.method=="OPTIONS") res.send(200);
     else  next();
 });
 app.post("/equipment", (req, res) => {
-	console.log("POST", "/equipment", req.query, req.body);
+	console.log("POST", "/equipment", req.query, req.body, req.params);
 	// connection.connect();
 	let sql = "insert into Equipment values()";
 	res.send("lalala");
