@@ -10,9 +10,10 @@
 	const buttonValue = ["修改", "删除", "取消修改"];
 	const buttonFunc = ["", "", ""];
 	let equipmentMap = new Map();
-	function makeupUrl(url, data) {
-    if (url.indexOf("?") === -1) url += "?";
-    else url += "&";
+	function makeupUrl(data) {
+    // if (url.indexOf("?") === -1) url += "?";
+    // else url += "&";
+    let url = "";
     for (let key in data) {
         url += key + "=" + data[key];
         url += "&";
@@ -22,7 +23,7 @@
     return url;
 }
 
-function createXMLRequest(url, method) {
+function createXMLRequest(url, method, queryString) {
 	let httpRequest = new XMLHttpRequest();
 
 	function getResponseContent() {
@@ -44,23 +45,29 @@ function createXMLRequest(url, method) {
 	httpRequest.onreadystatechange = function() {
         if (httpRequest.readyState !== 4) return;
         info = getResponseContent();
-        info = JSON.parse(info);
-        info = info.content;
+        // info = JSON.parse(info);
+        // info = info.content;
         console.log(info);
     };
-    httpRequest.open(method, url);
-    httpRequest.send();
-}
+    if(typeof(queryString) === 'undefined') queryString = "";
+    switch(method) {
+    	case "POST": {
+    		    httpRequest.open(method, url);
+    		    httpRequest.send(queryString);
+    		}
+    	}
+    }
+    
 
 function addButtonOnClickHandle() {
 	console.log("addButtonOnClickHandle");
-	let url = "http://47.93.35.183:8000/equipment/";
+	let url = "http://47.93.35.183:8000/equipment";
 	let data = {};
 	data["name"] = document.getElementById("addEquipment").value;
 	data["describe"] = document.getElementById("addDescribe").value;
 	data["count"] = document.getElementById("addCount").value;
-	makeupURL(url, data);
-	createXMLRequest(url, "POST");
+	let postString = makeupUrl(data);
+	createXMLRequest(url, "POST", postString);
 }
 	window.onload = function () {
 		function makeTableRow() {

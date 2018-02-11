@@ -17,7 +17,7 @@ app.all('*', function(req, res, next) {
     else  next();
 });
 app.post("/equipment", (req, res) => {
-	console.log("POST", "/equipment", req.query);
+	console.log("POST", "/equipment", req.query, req.body);
 	// connection.connect();
 	let sql = "insert into Equipment values()";
 	res.send("lalala");
