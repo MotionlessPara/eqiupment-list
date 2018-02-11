@@ -12,7 +12,7 @@
     "body-parser": "latest",
     "cookie-parser": "latest",
     "multer": "latest",
-    "mysql":"latest"
+    "mysql": "latest"
   },
   "repository": {
     "type": "git",
