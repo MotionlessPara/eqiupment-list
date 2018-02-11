@@ -4,13 +4,15 @@
   "description": "a simple tool fot vmstudio",
   "main": "server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
   },
   "dependencies": {
     "express": "latest",
     "body-parser": "latest",
     "cookie-parser": "latest",
-    "multer": "latest"
+    "multer": "latest",
+    "mysql":"latest"
   },
   "repository": {
     "type": "git",
