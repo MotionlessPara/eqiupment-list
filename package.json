@@ -1,0 +1,25 @@
+{
+  "name": "equipment-list",
+  "version": "1.0.0",
+  "description": "a simple tool fot vmstudio",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "latest",
+    "body-parser": "latest",
+    "cookie-parser": "latest",
+    "multer": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MotionlessPeri/equipment-list.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MotionlessPeri/equipment-list/issues"
+  },
+  "homepage": "https://github.com/MotionlessPeri/equipment-list#readme"
+}
