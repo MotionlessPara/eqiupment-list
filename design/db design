@@ -13,3 +13,18 @@ LOAN
 	Date date PK
 	String Borrower not null
 	String describe
+
+POST /equipment 新建一个设备
+params String name
+	   Number count
+	   String describe
+return null
+
+GET /equipment/all 获取所有设备
+params null
+return [{String name, Number count, String describe, Number availCount}]
+
+DELETE /equipment/ 删除一个设备
+params String name
+return null
+

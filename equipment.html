@@ -5,14 +5,63 @@
 	<title>EQUIPMENT</title>
 </head>
 <script>
-	const key = ["equipment", "count", "describe"];
+	let info;
+	const key = ["equipment", "count", "availCount", "describe"];
 	const buttonValue = ["修改", "删除", "取消修改"];
 	const buttonFunc = ["", "", ""];
+	function makeupUrl(url, data) {
+    if (url.indexOf("?") === -1) url += "?";
+    else url += "&";
+    for (let key in data) {
+        url += key + "=" + data[key];
+        url += "&";
+    }
+    url = url.substring(0,url.length - 1);
+    console.log(url);
+    return url;
+}
+
+function createXMLRequest(url, method) {
+	let httpRequest = new XMLHttpRequest();
+
+	function getResponseContent() {
+	    data = {};
+	    if (httpRequest.readyState === 4) {
+	        if (httpRequest.status === 204) {
+	            data = httpRequest.responseText;
+	        } else if (httpRequest.status < 400) {
+	            data = httpRequest.response;
+	        } else {
+	            alert(httpRequest.response);
+	        }
+	    } else {
+	        data = {name: "value"};
+	    }
+	    return data;
+	}
+
+	httpRequest.onreadystatechange = function() {
+        if (httpRequest.readyState !== 4) return;
+        info = getResponseContent();
+        info = JSON.parse(info);
+        info = info.content;
+        console.log(info);
+    };
+    httpRequest.open(method, url);
+    httpRequest.send();
+}
+
+function addButtonOnClickHandle() {
+	console.log("addButtonOnClickHandle");
+	let url = "http://47.93.35.183:8000/equipment/";
+	createXMLRequest(url, "POST");
+}
 	window.onload = function () {
 		function makeTableRow() {
+			
 			let tr = document.createElement("tr");
 			tr.className = "row";
-			for(let i = 0; i <= 2; i++) {
+			for(let i = 0; i <= 3; i++) {
 				let td = document.createElement("td");
 				let input = document.createElement("input");
 				input.value = ""; // TODO: add value
@@ -32,19 +81,28 @@
 			tr.appendChild(td);
 			return tr;
 		}
+			
+
 	}
+
 </script>
+<style type="text/css">
+
+</style>
 <body>
 	<table>
 		<tbody>
 			<tr class="row">
 				<td><input type="text" name="eqiupment" id="" class="equipment"></td>
 				<td><input type="text" name="count" id="" class="count"></td>
+				<td><input type="text" name="availCount" id="" class="availCount"></td>
 				<td><input type="text" name="describe" id="" class="describe"></td>
+				<td><input type="button" value="增加" onclick="addButtonOnClickHandle()" ></td>
 			</tr>
 			<tr class="row">
 				<td><input type="text" name="eqiupment" id="" class="equipment"></td>
 				<td><input type="text" name="count" id="" class="count"></td>
+				<td><input type="text" name="availCount" id="" class="availCount"></td>
 				<td><input type="text" name="describe" id="" class="describe"></td>
 				<td>
 					<input type="button" value="修改">
