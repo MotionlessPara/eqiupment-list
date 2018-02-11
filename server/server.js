@@ -19,6 +19,7 @@ app.all('*', function(req, res, next) {
 });
 app.post("/equipment", (req, res) => {
 	console.log("POST", "/equipment", req.query, req.body, req.params);
+<<<<<<< HEAD
 	let sql = "insert into Equipment values(?,?,?,?)";
 	let sqlParam = [req.query.name, req.query.count, req.query.describe, req.query.count];
 	// res.send("lalala");
@@ -27,6 +28,15 @@ app.post("/equipment", (req, res) => {
 		if(err) {
 			console.log(err);
 			res.send(err);
+=======
+	connection.connect();
+	let sql = "insert into Equipment values(?,?,?,?)";
+	let sqlParam - [req.query.name, req.query.count, req.query.describe, req.query.count];
+	res.send("lalala");
+	res.end();
+	connection.query(sql, sqlParam, (err, result) => {
+		if(err) {
+>>>>>>> 15f4ee347746a0a447aedb1e6a68d1d0f2018d94
 			return;
 		}
 		console.log(result);
