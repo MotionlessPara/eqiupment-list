@@ -18,17 +18,18 @@ app.all('*', function(req, res, next) {
 });
 app.post("/equipment", (req, res) => {
 	console.log("POST", "/equipment", req.query, req.body, req.params);
-	// connection.connect();
-	let sql = "insert into Equipment values()";
+	connection.connect();
+	let sql = "insert into Equipment values(?,?,?,?)";
+	let sqlParam - [req.query.name, req.query.count, req.query.describe, req.query.count];
 	res.send("lalala");
 	res.end();
-	// connection.query(sql , (err, result) => {
-	// 	if(err) {
-	// 		return;
-	// 	}
-	// 	console.log(result);
-	// 	res.send(result);
-	// });
+	connection.query(sql, sqlParam, (err, result) => {
+		if(err) {
+			return;
+		}
+		console.log(result);
+		res.send(result);
+	});
 })
 
 app.delete("/equipment", (req, res) => {
